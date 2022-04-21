@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        우리 이제 뭐해?
+    </title>
+    <style>
+        body {
+            height: 95vh;
+            background-image :url("https://lh3.googleusercontent.com/fife/AAWUweUyl4nPZf7aF-jmNjjJzdHmovECZGsY1_7BWbC4ivIC-02uT-EIdbmIwnJ_ex4vgiC05Kt2T_lH28TeCbMjsL2T6yK1GcgpZwE2c6E34ke2TM26DF1OPMQuXqZLdzcLdzaFxgUGhYdmkzSZ4Y_Ync-66fptibPazd1PMIILz02bJGKWxFRNKyyxQAI9LOr6Zz9dtnXinU2kMAqt6ELkWeQdc5r_B_1UuUFh_FMrcx_4jJz_viMXvW84Nu2-yCvCSIpOLwWSzs-IqsobvrDBiI5GSHs02qakKrmp0Ct9o1AMWV5tgaWwX6TGE_147aE0lzQU8QA-qA2iE2r7Dd8iLyPypt1EXsT35gz0qNj_iT9jhyR_91DLID0buymMkBanRDP8mTpc8mTeSA_EEGvZgeCASR3nHEfsasHZIjpOTJlyznDDDKxmtHDRUCeVPtOyhMX8y7vA1Y7fr4CEluThEWRXv-jQOkDsi4h4zz-FOgs7HYBU9SYFjMrKRN2gbWq2KuNcetdChZAuLJFqakd3ug3_OT8sjupNmu-OwbR1lP_Ue9O3nsJSgCI2xxMW1K5E3dv_ZnoSHPe5Hrdk_68W556JwKbwm_CW7_pEg3Y2dTaJxmZbFa_1uU6wzzxes4QvO_8XYMdntWNAbQM8W70jdKOKPtFjsq0ILtabPmV3yAB-48WSVWzd3r989dEiYy20j29BzJBkjJ3HWEzdL7dsqGEOkSDV0V4NqpCgHE9U1tmu8_uB21ioXuNog8s-8y6JDfyFLcftgNfswvMFRGdmVA=w1920-h969");
+            background-repeat: no-repeat;
+            background-size : 100%;
+            background-position: center;
+        }
+    </style>
+</head>
+<body style="text-align: center;">
+    <div style="position: relative; top: 250px;">
+    <form method="POST" action="/input">
+        <h1> 우리 이제 뭐해? </h1>
+        <h3> 보드게임 </br></h3>
+        <h5>
+            최소인원 
+        <select name="num1">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+        </select>
+            최대인원
+        <select name="num2">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        게임시간(분)
+        <select name="num3">
+            <option value="30">30</option>
+            <option value="60" selected>60</option>
+            <option value="90">90</option>
+            <option value="120">120</option>
+            <option value="150">150</option>
+            <option value="180">180</option>
+        </select>
+        </h5>
+        <h5>장르1
+        <select name="domain1">
+            <option value="Strategy Games">전략</option>
+            <option value="Thematic Games">테마</option>
+            <option value="Abstract Games">추상</option>
+            <option value="Wargames">전쟁</option>
+            <option value="Party Games">파티</option>
+            <option value="Family Games">가족</option>
+            <option value="Children's Games">어린이</option>
+            <option value="Customizable Games">커스텀</option>
+            <option value="Unclassified">미분류</option>
+        </select>
+        
+        장르2
+        <select name="domain2">
+            <option value="None">없음</option>
+            <option value="Strategy Games">전략</option>
+            <option value="Thematic Games">테마</option>
+            <option value="Abstract Games">추상</option>
+            <option value="Wargames">전쟁</option>
+            <option value="Party Games">파티</option>
+            <option value="Family Games">가족</option>
+            <option value="Children's Games">어린이</option>
+            <option value="Customizable Games">커스텀</option>
+        </select>
+        복잡도
+        <select name="num4">
+            <option value="1.0">1.0</option>
+            <option value="1.5">1.5</option>
+            <option value="2.0">2.0</option>
+            <option value="2.5" selected>2.5</option>
+            <option value="3.0">3.0</option>
+            <option value="3.5">3.5</option>
+            <option value="4.0">4.0</option>
+            <option value="4.5">4.5</option>
+            <option value="5.0">5.0</option>
+        </select>
+        </h5>
+        <button type="submit">보드게임 검색</button>
+    </form>
+
+        <p>
+            {% if game == None %}
+                <h5> 조건을 입력하신 후 검색을 눌러주세요. </h5>
+            {% else %}
+                <h3><b>{{game}}</b> 할까?</br></h3>
+                <p><b>{{game}}</b>은(는) <b>{{min_players}}</b> ~ <b>{{max_players}}</b> 명이 즐길 수 있는 <b>{{game_domain}}</b>게임 입니다.</p>
+                <p>소요시간 : {{play_time}}분<br>복잡도 : {{complexity}}</p>
+                <p>
+                    <a href="https://boardgamegeek.com/boardgame/{{ID}}" target="_blank">자세히 알아보기[새탭]</a>
+                </p>
+                <form method="POST" action="/">
+                    <button type="submit">지우기</button>
+                </form>
+            {% endif %}
+        </p>
+    </div>
+</body>
+</html>
